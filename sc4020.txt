@@ -40,3 +40,36 @@ sn0>cs purge all
 sn0>disk global clobberall
 sn0>platform bmc set source DHCP
 sn0>-reset
+
+# sc4020 init
+------------------top Controller SN79524_ST: CV3G7J2_25ZVH82----------------
+shellaccess developer
+platform prejoin show
+platform init hsn set 79524
+ifconfig inet eth0 192.168.100.201/24
+ifconfig inet gateway 192.168.100.1
+net dns init 8.8.8.8 
+ifconfig domainname cqccsd.com
+platform prejoin show
+platform bmc show
+platform bmc set ip 192.168.100.203
+platform bmc set netmask 255.255.255.0
+platform bmc set gateway 0.0.0.0
+platform bmc show
+platform prejoin show
+
+-sm -go
+
+-------------------Bottom Controller----------------
+shellaccess developer
+platform prejoin show
+platform init hsn set 79525
+ifconfig inet eth0 192.168.100.202/24
+platform bmc show
+platform bmc set ip 192.168.100.204
+platform bmc set netmask 255.255.255.0
+platform bmc set gateway 0.0.0.0
+platform bmc show
+platform prejoin show
+
+-sm -go
