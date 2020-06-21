@@ -1,0 +1,133 @@
+switchshow
+switchname SW300A
+
+portshow 0
+
+ipaddrset 
+
+ipaddrshow
+
+SW300:admin> alicreate cml_p1,"50:00:d3:10:00:92:88:05"
+SW300:admin> alicreate cml_p2,"50:00:d3:10:00:92:88:19"
+SW300:admin> alicreate cml_v1,"50:00:d3:10:00:92:88:2d"
+SW300:admin> alicreate cml_v2,"50:00:d3:10:00:92:88:2f"
+
+SW300:admin> alishow
+Defined configuration:
+ alias: cml_p1  50:00:d3:10:00:92:88:05
+ alias: cml_p2  50:00:d3:10:00:92:88:19
+ alias: cml_v1  50:00:d3:10:00:92:88:2d
+ alias: cml_v2  50:00:d3:10:00:92:88:2f
+
+
+SW300:admin> zonecreate cml_p,"cml_p1;cml_p2"
+SW300:admin> zonecreate cml_v,"cml_v1;cml_v2"
+
+SW300:admin> zoneshow
+Defined configuration:
+ zone:  cml_p   cml_p1; cml_p2
+ zone:  cml_v   cml_v1; cml_v2
+ alias: cml_p1  50:00:d3:10:00:92:88:05
+ alias: cml_p2  50:00:d3:10:00:92:88:19
+ alias: cml_v1  50:00:d3:10:00:92:88:2d
+ alias: cml_v2  50:00:d3:10:00:92:88:2f
+
+
+SW300A:admin> cfgcreate sw300a,"cml_p;cml_v"
+
+
+SW300A:admin> cfgsave
+You are about to save the Defined zoning configuration. This
+action will only save the changes on Defined configuration.
+Do you want to save the Defined zoning configuration only?  (yes, y, no, n): [no] y
+sw0 Updating flash ...
+2016/09/13-06:53:25, [ZONE-1024], 21, FID 128, INFO, SW300A, cfgSave completes successfully.
+.
+Updating flash ...
+
+SW300A:admin> cfgenable sw300a
+You are about to enable a new zoning configuration.
+This action will replace the old zoning configuration with the
+current configuration selected. If the update includes changes
+to one or more traffic isolation zones, the update may result in
+localized disruption to traffic on ports associated with
+the traffic isolation zone changes
+Do you want to enable 'sw300a' configuration  (yes, y, no, n): [no] y
+sw0 Updating flash ...
+2016/09/13-06:53:46, [ZONE-1022], 22, FID 128, INFO, SW300A, The effective configuration has changed to sw300a. .
+zone config "sw300a" is in effect
+Updating flash ...
+
+
+SW300A:admin> zoneshow
+Defined configuration:
+ cfg:   sw300a  cml_p; cml_v
+ zone:  cml_p   cml_p1; cml_p2
+ zone:  cml_v   cml_v1; cml_v2
+ alias: cml_p1  50:00:d3:10:00:92:88:05
+ alias: cml_p2  50:00:d3:10:00:92:88:19
+ alias: cml_v1  50:00:d3:10:00:92:88:2d
+ alias: cml_v2  50:00:d3:10:00:92:88:2f
+
+Effective configuration:
+ cfg:   sw300a
+ zone:  cml_p   50:00:d3:10:00:92:88:05
+                50:00:d3:10:00:92:88:19
+ zone:  cml_v   50:00:d3:10:00:92:88:2d
+                50:00:d3:10:00:92:88:2f
+
+SW300A:admin> alicreate nx3300a,"10:00:00:90:fa:8c:55:10"
+SW300A:admin> alicreate nx3300b,"10:00:00:90:fa:89:ce:46"
+
+SW300A:admin> zonecreate nx3300aa,"nx3300a;cml_v1;cml_v2"
+SW300A:admin> zonecreate nx3300bb,"nx3300b;cml_v1;cml_v2"
+
+SW300A:admin> cfgadd sw300a,"nx3300aa;nx3300bb"
+
+
+SW300A:admin> cfgenable sw300a
+
+You are about to enable a new zoning configuration.
+This action will replace the old zoning configuration with the
+current configuration selected. If the update includes changes 
+to one or more traffic isolation zones, the update may result in  
+localized disruption to traffic on ports associated with
+the traffic isolation zone changes
+Do you want to enable 'sw300a' configuration  (yes, y, no, n): [no] y
+zone config "sw300a" is in effect
+Updating flash ...
+
+
+SW300A:admin> cfgshow
+
+Defined configuration:
+ cfg:   sw300a  cml_p; cml_v; nx3300aa; nx3300bb
+ zone:  cml_p   cml_p1; cml_p2
+ zone:  cml_v   cml_v1; cml_v2
+ zone:  nx3300aa
+                nx3300a; cml_v1; cml_v2
+ zone:  nx3300bb
+                nx3300b; cml_v1; cml_v2
+ alias: cml_p1  50:00:d3:10:00:92:88:05
+ alias: cml_p2  50:00:d3:10:00:92:88:19
+ alias: cml_v1  50:00:d3:10:00:92:88:2d
+ alias: cml_v2  50:00:d3:10:00:92:88:2f
+ alias: nx3300a 10:00:00:90:fa:8c:55:10
+ alias: nx3300b 10:00:00:90:fa:89:ce:46
+
+Effective configuration:
+ cfg:   sw300a
+ zone:  cml_p   50:00:d3:10:00:92:88:05
+                50:00:d3:10:00:92:88:19
+ zone:  cml_v   50:00:d3:10:00:92:88:2d
+                50:00:d3:10:00:92:88:2f
+ zone:  nx3300aa
+                10:00:00:90:fa:8c:55:10
+                50:00:d3:10:00:92:88:2d
+                50:00:d3:10:00:92:88:2f
+ zone:  nx3300bb
+                10:00:00:90:fa:89:ce:46
+                50:00:d3:10:00:92:88:2d
+                50:00:d3:10:00:92:88:2f
+
+configupload  #backup configure file
