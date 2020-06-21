@@ -1,6 +1,8 @@
 switchshow
 switchname SW300A
 
+switchcfgpersistentenable
+
 portshow 0
 
 ipaddrset 
