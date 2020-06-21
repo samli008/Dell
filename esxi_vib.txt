@@ -1,0 +1,3 @@
+esxcli software vib install -v 加vib包绝对路径安装执行安装驱动
+
+esxcfg-scsidevs -a 这个命令查看存储设备
