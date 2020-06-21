@@ -1,8 +1,13 @@
 # EQ log
 1．ssh grpadmin@groupIP；
 2．diag
-3. field-unpack-x0.6.exe  *.dgo
+3. field-unpack-x0.6.exe  *.dgo # ftp get to windows client
 4. unpacked-diags.txt
+
+# EQ network
+grpparams def-mgmt-gateway ipaddress 172.16.253.254  （EQL管理网口网关配置）
+grpparams dcb disable
+manager router 0.0.0.0 0.0.0.0 172.16.253.254 （S6000管理网口网关配置）
 
 # EQ cli with root
 user:root passwd:grpadmin
