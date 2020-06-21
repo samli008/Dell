@@ -1,0 +1,54 @@
+Compellent Set Hardware &system serial controller
+###########################################
+Set HSN & SSN 
+###########################################
+controller show
+controller version
+shellaccess developer
+platform init hsn set 37512
+platform init ssn set 37513
+cs purge all
+-reset
+If two Controller,Need configuration two controller
+
+##########################################
+Set Network 
+##########################################
+shellaccess developer
+controller ipconfig eth0 10.2.6.52 255.255.255.0 10.2.6.254
+controller dnsserver 10.10.10.10 
+controller domainname ---------
+
+##########################################
+net show  ---不要更改eth1
+##########################################
+
+###########################################
+About Controller Leader  --first setup init controller
+###########################################
+
+#######################################
+SC8000 IDRAC IP
+#######################################
+shellaccess developer    -------admin Mode
+platform bmc get source
+platform bmc set source STATIC
+platform bmc show
+platform bmc set ip xxx.xxxx.xxx.xxx
+platform bmc set netmask xxx.xxxx.xxx.xxx
+platform bmc set getway xxx.xxx.xxx.xxx
+
+#######################
+init Compellent Command
+#######################
+shellaccess developer
+platform init reset 0 0    -rest SN
+disk global clobberall     -clear configuration disk
+cs purge all
+-reset
+####################################
+Login to the leader controller GUI
+####################################
+Default User and Password
+Username:Admin
+Password:mmm
