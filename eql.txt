@@ -1,0 +1,12 @@
+# EQ log
+1．ssh grpadmin@groupIP；
+2．diag
+3. field-unpack-x0.6.exe  *.dgo
+4. unpacked-diags.txt
+
+# EQ cli with root
+user:root passwd:grpadmin
+update.sh -override-downgrade    #downgrade FW
+raidtool   #view raid policy
+raidtool -H 6 -f   #force spare set
+diskview -j   #view disk block

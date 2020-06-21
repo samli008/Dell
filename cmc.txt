@@ -7,12 +7,7 @@ getioinfo
 getdcinfo
 racdump
 dumplogs
-
-
 getsvctag
-
-exit
-
 
 racadm help
 
@@ -28,7 +23,6 @@ $ help
  clrraclog       -- clear the CMC log
  clrsel          -- clear the System Event Log (SEL)
  ifconfig        -- display network interface information
-
 
 racadm getniccfg -m server-1
 

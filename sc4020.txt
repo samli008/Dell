@@ -12,12 +12,10 @@ In the CLI of both controllers (peer first - then Lead):
 >cs purge all
 >-reset
 
-
 注：使用Admin帐户重置不成功时，重启后无法使用Admin登录，请使用以下帐户登录再做一次初始化，初始化完成后可用Admin登录时，使用EM配置，本机先不设置IP信息。
 
 Login：__safemode__  (注意是双下划线)
 Password: StorageCenterSafeMode
-
 
 两个控制器都需要初始化。
 
