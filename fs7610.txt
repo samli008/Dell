@@ -1,0 +1,133 @@
+ssh nas vip （用户与密码：grpadmin）
+
+选择：cluster 回车后按ctrl+\ 返回cluster选项再回车进入菜单选择：shellprompt
+
+进入#提示符后，进入特权模式：
+
+#ssh node1    #切换节点，exit返回节点
+
+#lsscsi	   
+
+#walknodes all "lsscsi" 
+
+#multipath -ll
+
+#walknodes all "multipath -ll"
+
+#walknodes all "reboot"
+
+#walknodes all "shutdown -h now"
+
+#walknodes all lsscsi
+
+#system-status
+
+#check-IC-connectivity.sh   #check node network status
+
+#exasiteinfo     #check network config
+
+#problemtic-services
+
+#iscsiadm -m node 
+
+#iscsiadm -m node -L all
+
+#walknodes all "iscsiadm -m node -L all"
+
+#service iscsid status
+
+#walknodes all "service iscsid restart"
+
+#tail /var/log/messages  
+
+#ping -S 9000 192.168.100.100     #use jumbo frame ping groupIP
+
+#cliUtil
+#hardware NAS-appliances reboot-controller 1
+
+
+
+
+					EQL CLI
+
+user:root passwd:grpadmin
+
+update.sh -override-downgrade    #downgrade FW
+
+raidtool   #view raid policy
+
+raidtool -H 6 -f   #force spare set
+
+diskview -j   #view disk block
+
+# disktool -3 Turnonpdtest
+# disktool -r 12    #remove 12 disk
+# pdtest -z 12	    #清除prem/fail的信息
+# disktool -a 12    #add 12 disk
+
+pm mem     #view member
+
+pm vol     #view volume
+
+eqlinit status  #view service demo
+
+eqlinit restart netmgtd   #restart management network
+
+ifconfig -a    #view network
+
+ifconfig -l    #view network
+
+cord -g   #change active controller
+
+/sbin/PSSDiag.sh   #trigger log
+
+cd /mgtdb/update
+
+cli-settings events off
+
+ls 
+
+pwd
+
+rm
+
+clearlostdata
+
+收集EQL dump文件：
+
+group>su ex sh
+
+group#ftp ftpServerIP
+
+ftp> hash 512k
+Hash mark printing on (524288 bytes/hash mark).
+ftp> bin
+200 Type set to I
+ftp> put |"cdtool -xr" crashfile     #特别注意竖线左边有空格右边无空格；
+
+grpparams dcb disable
+
+[root@node1 ~]# walknodes all "restore_standby_node.sh --restore --notstandby"  #清除所有NAS机头配置；
+
+[root@node1 ~]# cliUtil
+
+[root@node1 ~]# system software-update upgrade DellFluidFS-4.0.300098-SP.sh
+
+	system background running
+
+NAS显示器登录：
+先cli
+然后administrator
+密码Stor@ge!
+
+system internal security support-access enable
+
+system internal security support-access change-password
+
+修改完了后logout,然后用support登陆
+再敲engineering
+再敲SuPpOrt
+
+nas-cluster select FS7610 operation show  #on eql group
+
+nas-cluster select FS7610 operation delete  #on eql group
