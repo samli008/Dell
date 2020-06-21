@@ -16,3 +16,6 @@ host7  host8
 0x10000090fa07e3ac
 [root@localhost ~]# cat /sys/class/fc_host/host8/port_name
 0x10000090fa07e3ad
+
+# update hba status
+etho "1" > /sys/class/fc_host/host7/issue_lip
