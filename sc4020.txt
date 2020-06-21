@@ -1,0 +1,42 @@
+Compellent Set Hardware &system serial controller
+###########################################
+Set HSN 115200
+###########################################
+>controller show
+>controller version
+
+In the CLI of both controllers (peer first - then Lead):
+
+>shellaccess developer
+>disk global clobberall
+>cs purge all
+>-reset
+
+
+注：使用Admin帐户重置不成功时，重启后无法使用Admin登录，请使用以下帐户登录再做一次初始化，初始化完成后可用Admin登录时，使用EM配置，本机先不设置IP信息。
+
+Login：__safemode__  (注意是双下划线)
+Password: StorageCenterSafeMode
+
+
+两个控制器都需要初始化。
+
+以下是SC4020的重置命令
+
+主控制器
+sn0>shellaccess developer
+sn0>platform init hsn set 0
+sn0>platform vpd set ssn=0
+sn0>platform vpd set assetTag=0
+sn0>cs purge all
+sn0>disk global clobberall
+sn0>platform bmc set source DHCP
+sn0>-reset
+
+备控制器
+sn0>shellaccess developer
+sn0>platform init hsn set 0
+sn0>cs purge all
+sn0>disk global clobberall
+sn0>platform bmc set source DHCP
+sn0>-reset
