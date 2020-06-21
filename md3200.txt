@@ -1,0 +1,76 @@
+07版本MD3000清除MDSM密码和查看IP地址:
+先连接上Debug线，打开超级终端, Bit per second选9600或115200(两种情况都要试, 有时候连不上)
+
+连接后, 按Ctrl+Break, 看到下图后5秒内按S键:
+
+提示输入密码:
+Enter Password to access Service Interface  <60 sec timeout>:supportDell
+显示服务菜单:
+Service Interface Main Menu
+========================
+Display IP Configuration
+Change IP Configuration
+Reset Storage Array <SYMbol> Password
+Quit Menu
+Enter Selection:
+选择1>查看IP地址:
+
+选择2>配置IP地址:
+
+选择3>重置密码:
+
+06版本MD3000清除MDSM密码和查看IP地址:
+先连接上Debug线，打开超级终端, Bit per second选9600或115200(两种情况都要试, 有时候连不上)
+
+连接后, 按Ctrl+B, 可以看到下图:
+ 
+选择10)Serial Interface Mode Menu:
+然后选择1) Console Only, 然后再选择R) Restart Controller:
+
+看到sodMain complete, 表示重启完成, 按回车看到-->提示符:
+
+输入clearSYMbolPassword回车看到value=0, 表示密码清除成功.
+运行ifShow可以查看控制器IP地址.
+MD3000硬盘重置：
+
+1.用超级终端,115200 其它的默认设置
+2.CTRL+BREAK ,然后按ESC
+3.name:shellUsr  password:DF4m/2>   （其中 U D F 是大写）
+4.运行命令:  sysWipe 0 ( W 是大写）这个命令清空硬盘上DACstore阵列信息，在两个控制器上都要做一次；
+  sysWipeAllConfigData  ( MD3600F）
+
+
+5.查看控制器IP：netCfgShow
+
+运行命令：sbbSetICID 2,1  这个命令是更换背板后设置背板ID的串口命令；（需要在两个控制器都执行）
+运行命令：lemClearLockdown　这个命令是解决控制器被锁，lockdown state状态的命令行；（需要在两个控制器都执行）
+
+5.通过带外管理: smcli ip （controller 0 1 都输入）
+6.然后运行:recover virtualDisk physicalDisks=(0,1 0,2 0,3 0,4 0,5 0,6 0,0) newVolumeGroup="0" userLabel="1" capacity=4497711562752  offset=0 raidLevel=5 segmentSize=128 owner=0;   
+    (第一括号中的 0  表示机柜 ID , 数字 1  表示硬盘 SLOT ID )
+
+MD3000控制器命令行上线或者下线：set controller[0 or 1] availibility=online or offline
+
+
+MD3600F 重置电池的命令
+开始菜单中输入CMD，进行命令行模式
+C：\program files\dell\md storage manager\client>smcli 192.168.128.101/102 -c “reset storageArray batteryInstallDate controller=0;"
+
+单控变双控：
+SMcli -n 192.168.128.101/102 -c "set storageArray redundancyMode=duplex;"
+SMcli -n 192.168.128.101/102 -c "set storageArray redundancyMode=simplex;"
+
+set allVirtualDisks mirrorCacheEnabled=TRUE;
+set allVirtualDisks mirrorCacheEnabled=FALSE;
+
+SMcli 192.168.128.101 192.168.128.102 –c “allVirtualDisks unreadableSectors;”
+
+SMcli 192.168.128.101 -c "show storagearray profile;" -o c:\Dell\TRNG01A-11-11-06-profile.txt
+
+SMcli 192.168.128.101 -c "revive physicalDisk [0,2];"
+
+进串口, 按Ctrl+Break, 连按两下Esc, 进入Serial Port Shell模式;
+
+查看IP是 netCfgShow
+
+修改IP是 netCfgSet
