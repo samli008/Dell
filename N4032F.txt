@@ -1,0 +1,84 @@
+console(config)#int vlan 1
+
+console(config-if-vlan1)#ipv6 enable 
+
+console(config-if-vlan1)#
+
+console(config)#system jumbo mtu 9216
+
+console(config)#flowcontrol receive on
+
+This operation may take few minutes.
+Management interfaces will not be available during this time.
+
+Are you sure you want to continue? (y/n) y
+
+console(config)#iscsi enable
+
+console#show interfaces status
+
+Port      Description               Vlan  Duplex Speed   Neg  Link   Flow Ctrl
+                                                              State  Status
+--------- ------------------------- ----- ------ ------- ---- ------ ---------
+Te1/0/1                             1     Full   10000   Off  Down   Inactive
+Te1/0/2                             1     Full   10000   Off  Down   Inactive
+Te1/0/3                             1     Full   10000   Off  Down   Inactive
+Te1/0/4                             1     Full   10000   Off  Up     Active
+Te1/0/5                             1     Full   10000   Off  Down   Inactive
+Te1/0/6                             1     Full   10000   Off  Up     Active
+Te1/0/7                             1     Full   10000   Off  Up     Active
+Te1/0/8                             1     Full   10000   Off  Down   Inactive
+Te1/0/9                             1     Full   10000   Off  Down   Inactive
+Te1/0/10                            1     Full   10000   Off  Up     Active
+Te1/0/11                            1     Full   10000   Off  Up     Active
+Te1/0/12                            1     Full   10000   Off  Down   Inactive
+Te1/0/13                            1     Full   10000   Off  Down   Inactive
+Te1/0/14                            1     Full   10000   Off  Down   Inactive
+Te1/0/15                            1     Full   10000   Off  Down   Inactive
+Te1/0/16                            1     Full   10000   Off  Down   Inactive
+Te1/0/17                            1     Full   10000   Off  Down   Inactive
+Te1/0/18                            1     Full   10000   Off  Up     Active
+Te1/0/19                            1     Full   10000   Off  Down   Inactive
+Te1/0/20                            1     N/A    Unknown Auto Down   Inactive
+Te1/0/21                            1     N/A    Unknown Auto Down   Inactive
+Te1/0/22                            1     N/A    Unknown Auto Down   Inactive
+Te1/0/23                            1     N/A    Unknown Auto Down   Inactive
+Te1/0/24                            1     N/A    Unknown Auto Down   Inactive
+
+
+Oob  Type                            Link
+                                     State
+---  ------------------------------  -----
+oob  Out-Of-Band                     Down
+
+
+Port    Description                    Vlan  Link
+Channel                                      State
+------- ------------------------------ ----- -------
+
+console#show interfaces detail te1/0/1
+
+Port      Description                 Duplex Speed   Neg  MTU   Admin Link
+                                                                State State
+--------- --------------------------- ------ ------- ---- ----- ----- -----
+Te1/0/1                               Full   10000   Off  9216  Up    Up
+
+console#wr
+
+This operation may take few minutes.
+Management interfaces will not be available during this time.
+
+Are you sure you want to save? (y/n) y
+
+Configuration Saved!
+
+
+console#show vlan
+
+VLAN   Name                             Ports          Type
+-----  ---------------                  -------------  --------------
+1      default                          Po1-128,       Default
+                                        Te1/0/1-24
+
+console#show tech-support
+

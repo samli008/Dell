@@ -10,3 +10,48 @@ update.sh -override-downgrade    #downgrade FW
 raidtool   #view raid policy
 raidtool -H 6 -f   #force spare set
 diskview -j   #view disk block
+
+disktool -3 Turnonpdtest
+disktool -r 12    #remove 12 disk
+pdtest -z 12	    #清除prem/fail的信息
+disktool -a 12    #add 12 disk
+
+pm mem     #view member
+
+pm vol     #view volume
+
+eqlinit status  #view service demo
+
+eqlinit restart netmgtd   #restart management network
+
+ifconfig -a    #view network
+
+ifconfig -l    #view network
+
+cord -g   #change active controller
+
+/sbin/PSSDiag.sh   #trigger log
+
+cd /mgtdb/update
+
+cli-settings events off
+
+ls 
+
+pwd
+
+rm
+
+clearlostdata
+
+收集EQL dump文件：
+
+group>su ex sh
+
+group#ftp ftpServerIP
+
+ftp> hash 512k
+Hash mark printing on (524288 bytes/hash mark).
+ftp> bin
+200 Type set to I
+ftp> put |"cdtool -xr" crashfile     #特别注意竖线左边有空格右边无空格；
