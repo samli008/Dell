@@ -135,4 +135,6 @@ Effective configuration:
 configupload    #backup configure file
 cfgdisable
 cfgclear
+cfgsave
+switchdisable
 configdownload  #restore configure file
