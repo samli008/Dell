@@ -133,4 +133,6 @@ Effective configuration:
                 50:00:d3:10:00:92:88:2f
 
 configupload    #backup configure file
+cfgdisable
+cfgclear
 configdownload  #restore configure file
