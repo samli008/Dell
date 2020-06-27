@@ -132,4 +132,5 @@ Effective configuration:
                 50:00:d3:10:00:92:88:2d
                 50:00:d3:10:00:92:88:2f
 
-configupload  #backup configure file
+configupload    #backup configure file
+configdownload  #restore configure file
