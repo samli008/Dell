@@ -1,0 +1,15 @@
+Compellent Set Hardware &system serial controller
+###########################################
+Set HSN 115200
+###########################################
+controller show
+controller version
+
+In the CLI of both controllers (peer first - then Lead):
+
+shellaccess developer
+disk global clobberall
+cs purge all
+-reset
+
+scupdate global show #查看固件版本
