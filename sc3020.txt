@@ -13,3 +13,4 @@ cs purge all
 -reset
 
 scupdate global show #查看固件版本
+-shell on  #enable ssh server with fw 7.4
