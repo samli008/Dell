@@ -12,5 +12,11 @@ disk global clobberall
 cs purge all
 -reset
 
+# default user
+Admin/mmm
+# safemode user
+Login：__safemode__  (注意是双下划线)
+Password: StorageCenterSafeMode
+
 scupdate global show #查看固件版本
 -shell on  #enable ssh server with fw 7.4
