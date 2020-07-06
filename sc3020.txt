@@ -18,5 +18,8 @@ Admin/mmm
 Login：__safemode__  (注意是双下划线)
 Password: StorageCenterSafeMode
 
+# default user Admin/mmm on leader controller
+system Purge PurgeType Basic PurgeShutdownType Reset
+
 scupdate global show #查看固件版本
 -shell on  #enable ssh server with fw 7.4
