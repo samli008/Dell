@@ -138,5 +138,3 @@ Effective configuration:
  zone:	sc3020b_v_zone	
 		50:00:d3:10:03:d7:cc:33
 		50:00:d3:10:03:d7:cc:34
-
-
