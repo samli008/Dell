@@ -14,3 +14,8 @@ platform init hsn set 0
 -reset
 
 scupdate global show #查看固件版本
+
+# add unassign disk to folder; disk index 26; folder index 3;
+shellaccess developer
+disk set 26 parentfolder 3
+disk spare 26
