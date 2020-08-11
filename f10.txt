@@ -23,7 +23,63 @@ FTOS#copy running-config tftp://192.168.6.42/mxl.conf
 FTOS#copy tftp://192.168.6.42/mxl.conf running-config
 FTOS#wr
 
-# 
+# Creating VLANs 
+MXL#show int status
+MXL#show vlan 
+MXL#conf
+MXL(conf)#int vlan 200
+
+# Removing VLANs
+MXL(conf-if-vl-200)#exit
+MXL(conf)#no int vlan 200
+
+# Configuring Access Ports
+MXL(conf)#int range te 0/5-6
+MXL(conf-if-range-te-0/5-6)#switchport
+MXL(conf-if-range-te-0/5-6)#int vlan 200
+MXL(conf-if-vl-200)#untagged te 0/5-6           
+MXL(conf-if-vl-200)#show config
+!
+interface Vlan 200
+ no ip address
+ untagged TenGigabitEthernet 0/5-6
+ shutdown
+
+# Remove Port From VLAN 
+MXL(conf-if-vl-200)#untagged te 0/5-6
+% Error: Te 0/5 Port is untagged in another Vlan.
+% Error: Te 0/6 Port is untagged in another Vlan.
+MXL(conf-if-vl-200)#int vlan 100
+MXL(conf-if-vl-100)#no untagged te 0/5-6
+
+# Configuring Trunk Ports
+MXL(conf)#int range te 0/7-8
+MXL(conf-if-range-te-0/7-8)#no shut
+MXL(conf-if-range-te-0/7-8)#int vlan 100
+MXL(conf-if-vl-100)#no untagged te 0/7-8
+MXL(conf-if-vl-100)#tagged te 0/7-8
+MXL(conf-if-vl-100)#int vlan 200
+MXL(conf-if-vl-200)#tagged te 0/7-8
+MXL(conf-if-vl-200)#do wr
+MXL(conf-if-vl-200)#end
+
+MXL#show vlan
+
+Codes: * - Default VLAN, G - GVRP VLANs, R - Remote Port Mirroring VLANs, P - Primary, C - Community, I - Isolated
+       O - Openflow
+Q: U - Untagged, T - Tagged
+   x - Dot1x untagged, X - Dot1x tagged
+   o - OpenFlow untagged, O - OpenFlow tagged
+   G - GVRP tagged, M - Vlan-stack, H - VSN tagged
+   i - Internal untagged, I - Internal tagged, v - VLT untagged, V - VLT tagged
+
+    NUM    Status    Description                     Q Ports
+*   1      Inactive                                  U Po1(Te 0/1-2)
+                                                     U Te 0/7-8
+    100    Inactive                                  T Te 0/7-8
+                                                     U Te 0/9-32
+    200    Inactive                                  T Te 0/7-8
+                                                     U Te 0/5-6
 
 # Creating LAGs – Static Two-port LAG
 FTOS> enable
@@ -43,7 +99,7 @@ interface Port-channel 1
  channel-member TenGigabitEthernet 0/1-2
  no shutdown
 
-#
+# Creating LAGs – Dynamic LACP LAG
 MXL(conf)#int range te 0/3-4
 MXL(conf-if-range-te-0/3-4)#no switchport 
 MXL(conf-if-range-te-0/3-4)#no shut
