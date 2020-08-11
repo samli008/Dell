@@ -92,6 +92,20 @@ interface Vlan 200
  untagged TenGigabitEthernet 0/5-6
  shutdown
 
+# Configuring Hybrid Ports
+MXL(conf)#int te 0/9
+MXL(conf-if-te-0/9)#portmode hybrid 
+MXL(conf-if-te-0/9)#switchport 
+MXL(conf-if-te-0/9)#int vlan 100
+MXL(conf-if-vl-100)#untagged te 0/9
+MXL(conf-if-vl-100)#int vlan 200
+MXL(conf-if-vl-200)#tagged te 0/9             
+MXL(conf-if-vl-200)#do show vlan
+    100    Inactive                                  T Te 0/7-8
+                                                     U Te 0/9-32
+    200    Inactive                                  T Te 0/9
+                                                     U Te 0/5-6
+
 # Creating LAGs – Static Two-port LAG
 FTOS> enable
 FTOS# configure
