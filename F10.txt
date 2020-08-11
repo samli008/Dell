@@ -7,7 +7,7 @@ FTOS(conf-if-ma-0/0)#end
 FTOS#
 
 # Configure switch hostname
-S > enable
+FTOS > enable
 FTOS # config
 FTOS(conf)#hostname mxl
 
