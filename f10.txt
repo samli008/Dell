@@ -18,10 +18,6 @@ FTOS(conf)#username admin password liyang@008 privilege 15
 FTOS(conf)#
 FTOS(conf)#enable password liyang@008
 
-# Backup & Restore configuration via TFTP server
-FTOS#copy running-config tftp://192.168.6.42/mxl.conf
-FTOS#copy tftp://192.168.6.42/mxl.conf running-config
-FTOS#wr
 
 # Creating VLANs 
 MXL#show int status
@@ -171,4 +167,10 @@ interface TenGigabitEthernet 0/4
   port-channel 2 mode active 
  no shutdown
 
+# Backup & Restore configuration via TFTP server
+FTOS#copy running-config tftp://192.168.6.42/mxl.conf
+FTOS#copy tftp://192.168.6.42/mxl.conf running-config
+FTOS#wr
+
+# Upgrade firmware
 
