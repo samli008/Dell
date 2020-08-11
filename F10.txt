@@ -167,6 +167,10 @@ no ip address
   port-channel 2 mode active 
  no shutdown
 
+# remove port-channel
+MXL#show int port-channel brief
+MXL(conf)#no interface port-channel 1
+
 # Backup & Restore configuration via TFTP server
 FTOS#copy running-config tftp://192.168.6.42/mxl.conf
 FTOS#copy tftp://192.168.6.42/mxl.conf running-config
