@@ -81,6 +81,17 @@ Q: U - Untagged, T - Tagged
     200    Inactive                                  T Te 0/7-8
                                                      U Te 0/5-6
 
+# Remove VLAN From Trunk Port
+MXL#conf
+MXL(conf)#int vlan 200
+MXL(conf-if-vl-200)#no tagged te 0/7-8
+MXL(conf-if-vl-200)#show config
+!
+interface Vlan 200
+ no ip address
+ untagged TenGigabitEthernet 0/5-6
+ shutdown
+
 # Creating LAGs – Static Two-port LAG
 FTOS> enable
 FTOS# configure
