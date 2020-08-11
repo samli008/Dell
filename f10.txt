@@ -106,6 +106,30 @@ MXL(conf-if-vl-200)#do show vlan
     200    Inactive                                  T Te 0/9
                                                      U Te 0/5-6
 
+# Remove VLANs From Hybrid Ports
+MXL#conf
+MXL(conf)#int vlan 100
+MXL(conf-if-vl-100)#no untagged te 0/9
+MXL(conf-if-vl-100)#int vlan 200
+MXL(conf-if-vl-200)#no tagged te 0/9
+MXL(conf-if-vl-200)#int te 0/9
+MXL(conf-if-te-0/9)#no sw
+MXL(conf-if-te-0/9)#no portmode hybrid 
+MXL(conf-if-te-0/9)#show config
+!
+interface TenGigabitEthernet 0/9
+ no ip address
+ shutdown
+
+# Router on Force10 switch
+MXL#conf
+MXL(conf)#int vlan 100
+MXL(conf-if-vl-100)#ip address 192.168.8.105 /24
+MXL(conf-if-vl-100)#no shut
+MXL#conf
+MXL(conf)#ip route 192.168.8.0 255.255.255.0 192.168.8.105
+MXL(conf)#do show ip route
+
 # Creating LAGs – Static Two-port LAG
 FTOS> enable
 FTOS# configure
