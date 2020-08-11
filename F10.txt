@@ -174,4 +174,14 @@ FTOS#wr
 
 # Upgrade firmware
 MXL#dir  
-MXL#delete flash://mxl9.9.bin
+MXL#delete flash://mxl97.bin
+
+MXL#show boot system stack-unit 0
+
+MXL#copy tftp://192.168.6.42/mxl99.bin flash:
+MXL#upgrade system flash://mxl99.bin A:
+MXL#conf
+MXL(conf)#boot system stack-unit 0 primary system: A:
+MXL#show bootvar
+MXL#wr
+MXL#reload
