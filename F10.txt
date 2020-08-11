@@ -136,6 +136,8 @@ FTOS(conf-if-range-te-0/1-2)#no shut
 FTOS(conf-if-range-te-0/1-2)#no switchport
 FTOS(conf-if-range-te-0/1-2)#int port-channel 1
 FTOS(conf-if-po-1)#channel-member te 0/1-2
+FTOS(conf-if-po-1)#switchport
+FTOS(conf-if-po-1)#no shut
 FTOS(conf-if-po-1)#show config
 !
 interface Port-channel 1
@@ -151,6 +153,7 @@ MXL(conf-if-range-te-0/3-4)#no shut
 MXL(conf-if-range-te-0/3-4)#port-channel-protocol lacp
 MXL(conf-if-range-te-0/3-4-lacp)#port-channel 2 mode active
 MXL(conf-if-range-te-0/3-4-lacp)#no shut
+MXL(conf-if-range-te-0/3-4-lacp)#swithport
 MXL(conf-if-range-te-0/3-4)#show config
 !
 interface TenGigabitEthernet 0/3
