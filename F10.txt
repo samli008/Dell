@@ -153,7 +153,7 @@ MXL(conf-if-range-te-0/3-4)#no shut
 MXL(conf-if-range-te-0/3-4)#port-channel-protocol lacp
 MXL(conf-if-range-te-0/3-4-lacp)#port-channel 2 mode active
 MXL(conf-if-range-te-0/3-4-lacp)#no shut
-MXL(conf-if-range-te-0/3-4-lacp)#swithport
+MXL(conf-if-range-te-0/3-4-lacp)#switchport
 MXL(conf-if-range-te-0/3-4)#show config
 !
 interface TenGigabitEthernet 0/3
