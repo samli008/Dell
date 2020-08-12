@@ -1,0 +1,5 @@
+# Configure remote management via serial port
+m6220>en
+m6220#conf
+m6220(config)#crypto key generate dsa
+m6220(config)#crypto key generate rsa
