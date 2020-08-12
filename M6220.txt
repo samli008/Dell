@@ -55,4 +55,20 @@ m6220(config-if-vlan100)#ip address 192.168.100.1 255.255.255.0
 m6220#show ip route 
 m6220#show ip interface
 
-# 
+# Create port-channel static
+m6220(config)#interface range gigabitethernet 1/0/5-6
+m6220(config-if)#channel-group 1 mode ?
+active                   Force the port to port-channel with lacp.
+on                       Force the port to port-channel without lacp.
+
+m6220(config-if)#channel-group 1 mode on                
+m6220(config-if)#do show int port-channel 1 
+
+# Create port-channel lacp
+m6220(config)#interface range gigabitethernet 1/0/7-8
+m6220(config-if)#channel-group 2 mode active 
+m6220(config-if)#do show int port-channel 2
+
+# remove port-channel
+m6220(config)#interface range gigabitethernet 1/0/7-8
+m6220(config-if)#no channel-group
