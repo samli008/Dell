@@ -69,6 +69,11 @@ m6220(config)#interface range gigabitethernet 1/0/7-8
 m6220(config-if)#channel-group 2 mode active 
 m6220(config-if)#do show int port-channel 2
 
+# create port-channel trunk
+m6220(config)#interface port-channel 1
+m6220(config-if-Po1)#switchport mode trunk
+m6220(config-if-Po1)#switchport trunk allowed vlan 100,200
+
 # remove port-channel
 m6220(config)#interface range gigabitethernet 1/0/7-8
 m6220(config-if)#no channel-group
