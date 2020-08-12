@@ -83,4 +83,8 @@ m6220#copy running-config tftp://192.168.6.42/m6220.conf
 m6220#copy tftp://192.168.6.42/m6220.conf running-config
 
 # upgrade switch firmware
-
+m6220#copy tftp://192.168.6.42/PCM6220v5.1.16.1.stk image
+m6220#show version 
+m6220#boot system image2
+m6220#update bootcode
+m6220#reload
