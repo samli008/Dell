@@ -14,4 +14,37 @@ m6220(config)#enable password liyang@008
 m6220(config)#username root password liyang@008 privilege 15
 
 # create vlan
+m6220#show int status
+m6220#show vlan
 
+m6220(config)#vlan database
+m6220(config-vlan)#vlan 100
+m6220(config-vlan)#vlan 200
+
+# remove vlan
+m6220#conf
+m6220(config)#vlan database 
+m6220(config-vlan)#no vlan 100
+
+# Configuring Access Ports
+m6220(config)#interface gigabitethernet 1/0/1
+m6220(config-if-Gi1/0/1)#switchport mode access 
+m6220(config-if-Gi1/0/1)#switchport access vlan 100
+
+m6220(config)#interface range gigabitethernet 1/0/2-4    
+m6220(config-if)#switchport mode access 
+m6220(config-if)#switchport access vlan 200
+
+# remove port from vlan
+m6220(config-if)#no switchport access vlan
+
+# config trunk port
+m6220(config)#interface range gigabitethernet 1/0/3
+m6220(config-if)#switchport mode trunk  
+m6220(config-if)#switchport trunk allowed vlan 100,200
+
+# remove port from trunk vlan
+m6220(config-if)#switchport mode access 
+m6220(config-if)#no switchport access vlan 
+
+# 
