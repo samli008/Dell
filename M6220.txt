@@ -47,4 +47,12 @@ m6220(config-if)#switchport trunk allowed vlan 100,200
 m6220(config-if)#switchport mode access 
 m6220(config-if)#no switchport access vlan 
 
+# enable vlan route
+m6220(config)#ip routing
+m6220(config)#interface vlan 100
+m6220(config)#interface vlan 100
+m6220(config-if-vlan100)#ip address 192.168.100.1 255.255.255.0
+m6220#show ip route 
+m6220#show ip interface
+
 # 
