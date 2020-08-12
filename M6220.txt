@@ -77,3 +77,10 @@ m6220(config-if-Po1)#switchport trunk allowed vlan 100,200
 # remove port-channel
 m6220(config)#interface range gigabitethernet 1/0/7-8
 m6220(config-if)#no channel-group
+
+# backup restore configuration via TFTP server
+m6220#copy running-config tftp://192.168.6.42/m6220.conf
+m6220#copy tftp://192.168.6.42/m6220.conf running-config
+
+# upgrade switch firmware
+
