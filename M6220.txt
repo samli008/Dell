@@ -8,4 +8,10 @@ m6220(config)#interface out-of-band
 m6220(config-if)#ip address 192.168.6.19 255.255.255.0 192.168.6.1
 m6220(config-if)#do wr
 
-# 
+# config hostname / password & enable password
+m622(config)#hostname m6220
+m6220(config)#enable password liyang@008
+m6220(config)#username root password liyang@008 privilege 15
+
+# create vlan
+
