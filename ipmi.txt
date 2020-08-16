@@ -6,7 +6,7 @@ ipmitool -H 192.168.6.11 -I lanplus -U root -P calvin power up
 
 # ipmi for windows
 ipmish -ip 192.168.6.6 -u root -p calvin power status
-ipmish -ip 192.168.6.6 -u root -p calvin power up
+ipmish -ip 192.168.6.6 -u root -p calvin power on
 ipmish -ip 192.168.6.6 -u root -p calvin power off
 ipmish -ip 192.168.6.6 -u root -p calvin power cycle 
 
