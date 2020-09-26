@@ -125,6 +125,7 @@ MXL(conf-if-vl-100)#no shut
 MXL#conf
 MXL(conf)#ip route 192.168.8.0 255.255.255.0 192.168.8.105
 MXL(conf)#do show ip route
+MXL(conf)#management route 0.0.0.0/0 172.16.110.1
 
 # Creating LAGs – Static Two-port LAG
 FTOS> enable
