@@ -5,3 +5,5 @@ esxcfg-scsidevs -a 这个命令查看存储设备
 esxcli storage nmp device list
 
 esxcli storage nmp satp rule add -s VMW_SATP_ALUA -V COMPELNT -P VMW_PSP_RR -o disable_action_OnRetryErrors -e "Dell EMC SC Series Claim Rule" -O iops=3
+
+esxcli storage nmp device list | grep -A2 naa.
