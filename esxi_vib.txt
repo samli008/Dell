@@ -12,6 +12,6 @@ esxcli system module parameters list -m=lpfc820
 # view and set storage volume path policy
 esxcli storage nmp device list
 
-esxcli storage nmp satp rule add -s VMW_SATP_ALUA -V COMPELNT -P VMW_PSP_RR -o disable_action_On RetryErrors -e "Dell EMC SC Series Claim Rule" -O iops=3
+esxcli storage nmp satp rule add -s VMW_SATP_ALUA -V COMPELNT -P VMW_PSP_RR -o disable_action_OnRetryErrors -e "Dell EMC SC Series Claim Rule" -O iops=3
 reboot
 esxcli storage nmp device list | grep -A2 naa.
