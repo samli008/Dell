@@ -1,0 +1,9 @@
+tar xzvf DellEMC-iDRACTools-Web-LX-9.5.1-4188_A00.tar.gz
+cd iDRACTools/racadm/
+sh install_racadm.sh
+ln -s /opt/dell/srvadmin/sbin/racadm /usr/sbin/racadm
+ln -s /usr/lib64/libssl.so.1.0.2k /opt/dell/srvadmin/lib64/libssl.so
+
+racadm -r 192.168.6.11 -u root -p calvin getsysinfo
+racadm -r 192.168.6.11 -u root -p calvin storage get vdisks
+racadm -r 192.168.6.11 -u root -p calvin storage get pdisks
