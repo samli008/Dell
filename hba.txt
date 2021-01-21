@@ -18,4 +18,4 @@ host7  host8
 0x10000090fa07e3ad
 
 # update hba status
-etho "1" > /sys/class/fc_host/host7/issue_lip
+echo "1" > /sys/class/fc_host/host7/issue_lip
