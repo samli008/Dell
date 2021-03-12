@@ -82,3 +82,8 @@ VLAN   Name                             Ports          Type
 
 console#show tech-support
 
+# snmp config
+snmp-server community public ro
+snmp-server community public rw
+snmp-server enable traps all
+snmp-server host 192.168.8.105 public udp-port 161
