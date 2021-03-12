@@ -23,4 +23,7 @@ create volume vol2 pool VD1 size 1TB access rw lun 1
 
 map volume
 map volume vol1,vol2 initiator r610.*.* lun 2
+
+# enable large pool
+set advanced-settings large-pools enabled
 ```
